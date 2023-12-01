@@ -157,10 +157,12 @@ export default function UserButton() {
             </Link>
             </Dropdown.Item>
             <Dropdown.Item>
+            <Link href="/donor/displayDonor" style={{ textDecoration: 'none' }}>
               <Button variant="light" size="sm">
                 <FontAwesomeIcon icon={faArrowRight} />
-                <span>Exams</span>
+                <span>Donor</span>
               </Button>
+            </Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Button onClick={handleLogout} variant="light" size="sm">

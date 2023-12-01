@@ -20,6 +20,9 @@ function AppHeader() {
           <Link href={"/blogs"} className='nav-link'>
             Blogs
           </Link>
+          <Link href={"/donor/displayDonor"} className='nav-link'>
+            Donor
+          </Link>
         </Nav>
         <UserButton/>
       </Navbar.Collapse>
