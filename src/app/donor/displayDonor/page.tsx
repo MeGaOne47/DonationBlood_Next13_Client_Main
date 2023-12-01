@@ -5,12 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import DonationHistoryList from '../donationHistory/page';
 
-interface IProps {
-  donors: IDonor[];
-  users: IUser[];
-}
+// interface IProps {
+//   donors: IDonor[];
+//   users: IUser[];
+// }
 
-const DisplayDonor = (props: IProps) => {
+const DisplayDonor = () => {
   // const { donors } = props;
   // const { users } = props;
   // const { id } = useParams();
