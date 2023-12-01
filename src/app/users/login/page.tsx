@@ -115,8 +115,9 @@ function Login() {
       })
       .then((profileData) => {
         console.log("User Profile Data:", profileData);
+        console.log("User Donor:", profileData.donor);
         // Redirect to a protected page (e.g., dashboard)
-        window.location.href = 'dashboard';
+        window.location.href = '../donor';
       })
       .catch((error) => {
         console.error('Error retrieving user profile:', error);
