@@ -22,3 +22,12 @@ interface IDonor {
     bloodType: string | null;
     rhFactor: string | null;
 }
+
+interface IDonationHistory{
+    [x: string]: any;
+    id: number | null;
+    donationDate: Date | null;
+    donatedAmount: number | null;
+    healthCheckResult: string | null;
+
+}

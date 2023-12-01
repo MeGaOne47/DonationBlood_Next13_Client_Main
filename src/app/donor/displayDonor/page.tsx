@@ -3,16 +3,19 @@ import Cookies from 'js-cookie';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
+import DonationHistoryList from '../donationHistory/page';
 
 interface IProps {
   donors: IDonor[];
+  users: IUser[];
 }
 
 const DisplayDonor = (props: IProps) => {
-  const { donors } = props;
-  const { id } = useParams();
+  // const { donors } = props;
+  // const { users } = props;
+  // const { id } = useParams();
   const [donor, setDonor] = useState<IDonor | null>(null);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
 
   const fetchUserProfile = (accessToken: any) => {
     fetch('http://localhost:8000/auth/profile', {
@@ -68,15 +71,16 @@ const DisplayDonor = (props: IProps) => {
     }
   }, []); // Gọi chỉ một lần khi component được tạo
 
-  // if (!donors) {
-  //   return <div>Loading...</div>;
-  // }
+  if (!donor) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <h2>Donor Details</h2>
       <Card>
         <Card.Body>
+          <Card.Title>{donor?.id}</Card.Title>
           <Card.Title>{donor?.fullName}</Card.Title>
           <Card.Text>
             <strong>Birth Date:</strong> {donor?.birthDate ? new Date(donor?.birthDate).toDateString() : 'N/A'}<br />
@@ -84,10 +88,13 @@ const DisplayDonor = (props: IProps) => {
             <strong>Address:</strong> {donor?.address}<br />
             <strong>Phone Number:</strong> {donor?.phoneNumber}<br />
             <strong>Blood Type:</strong> {donor?.bloodType}<br />
-            <strong>Rh Factor:</strong> {donor?.rhFactor}
+            <strong>Rh Factor:</strong> {donor?.rhFactor}<br />
+            <strong>Email:</strong> {userData?.email}<br />
           </Card.Text> 
         </Card.Body>
       </Card>
+      {/* Truyền donorId cho DonationHistoryList */}
+      {donor && <DonationHistoryList donorId={donor.id} />}
     </div>
   );
 };
