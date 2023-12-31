@@ -7,7 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AppSideBar from '@/components/app.sideBar';
-
+import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata = {
@@ -37,7 +37,7 @@ export default function RootLayout({
             </Col>
           </Row>
         </Container>
-
+        <Analytics />
         <AppFooter/>
         <ToastContainer
           position="bottom-center"
