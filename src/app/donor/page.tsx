@@ -40,6 +40,7 @@ const CreateDonorProfile = () => {
         const result = await response.json();
         console.log(result.message);
         // Xử lý sau khi tạo thành công
+        window.location.href = '../donor/displayDonor';
       } else {
         // Xử lý lỗi
         console.error('Error creating donor profile');
@@ -109,11 +110,17 @@ const CreateDonorProfile = () => {
         <FormGroup>
           <Form.Label>Blood Type</Form.Label>
           <FormControl
-            type="text"
+            as="select"
             name="bloodType"
             value={donor.bloodType}
             onChange={handleChange}
-          />
+          >
+            <option value="O">O</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+
+          </FormControl>
         </FormGroup>
 
         <FormGroup>

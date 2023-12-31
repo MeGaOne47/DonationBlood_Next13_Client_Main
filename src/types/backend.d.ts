@@ -8,7 +8,7 @@ interface IBlog {
 interface IUser {
     id: number;
     email: string | null;
-    picture: string | null;
+    profileImage: string | null;
     username: string | null;
 }
 
@@ -24,10 +24,41 @@ interface IDonor {
 }
 
 interface IDonationHistory{
-    [x: string]: any;
     id: number | null;
     donationDate: Date | null;
     donatedAmount: number | null;
     healthCheckResult: string | null;
-
 }
+
+interface IRecipient {
+    id: number;
+    fullName: string;
+    birthDate: Date;
+    gender: string;
+    address: string;
+    phoneNumber: string;
+    bloodType: string;
+    rhFactor: string;
+    requiredAmount: number;
+}
+
+interface IManagementAccount {
+    id: number;
+    username: string;
+    email: string;
+    roles: string;
+    isLocked: boolean;
+    profileImage: string;
+}
+
+interface IJoonRoom {
+    id: number;
+    name: string;
+    participantsCount: number;
+    maxParticipants: number;
+    purpose: string;
+    location: string;
+    donationInstructions: string;
+}
+
+

@@ -1,14 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import {useRouter} from "next/navigation";
 import {Button, Card} from "react-bootstrap";
 import useSWR, { Fetcher } from 'swr'
 
 const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
-    const fetcher: Fetcher<IBlog, string> = (url: string) => fetch(url)
+
+
+
+    const fetcher: Fetcher<IManagementAccount, string> = (url: string) => fetch(url)
         .then((res) => res.json());
 
     const {data, error, isLoading} = useSWR(
-        `http://localhost:8000/blogs/${params.id}`,
+        `http://localhost:8000/users/${params.id}`,
         fetcher,
         {
             revalidateIfStale: false,
@@ -42,15 +46,23 @@ const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
             Vieu detail with hoidanit = {params.id}
             <div>
                 <Card className="text-center">
-                    <Card.Header>{data?.title}</Card.Header>
+                    <Card.Header>{data?.username}</Card.Header>
                     <Card.Body>
-                        {/* <Card.Title>Special title treatment</Card.Title> */}
                         <Card.Text>
-                            {data?.content}
+                            {data?.email}
                         </Card.Text>
-                        {/* <Button variant="primary">Go somewhere</Button> */}
+                        <Card.Text>
+                            {data?.isLocked}
+                        </Card.Text>
+                        <Card.Text>
+                            <img
+                                src={`http://localhost:8000/users/${data?.id}/profile-image`} // Đường dẫn đến hình ảnh trên server
+                                alt={`Profile of ${data?.username}`}
+                                style={{ width: '500px', height: '300px', borderRadius: '50%' }}
+                            />
+                        </Card.Text>
                     </Card.Body>
-                    <Card.Footer className="text-muted">Author: {data?.author}</Card.Footer>
+                    <Card.Footer className="text-muted">Quyền hạn: {data?.roles}</Card.Footer>
                 </Card>
             </div>
             <div style={{ textAlign: 'center' }}>

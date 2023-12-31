@@ -4,11 +4,14 @@ import {Button, Card} from "react-bootstrap";
 import useSWR, { Fetcher } from 'swr'
 
 const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
+
+
+
     const fetcher: Fetcher<IBlog, string> = (url: string) => fetch(url)
         .then((res) => res.json());
 
     const {data, error, isLoading} = useSWR(
-        `http://localhost:8000/blogs/${params.id}`,
+        `http://localhost:8000/rooms/${params.id}`,
         fetcher,
         {
             revalidateIfStale: false,

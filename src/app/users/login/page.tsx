@@ -115,14 +115,20 @@ function Login() {
       })
       .then((profileData) => {
         console.log("User Profile Data:", profileData);
-        console.log("User Donor:", profileData.donor);
-        // Redirect to a protected page (e.g., dashboard)
-        window.location.href = '../donor';
+        
+        if (profileData.donor) {
+          // Nếu có hồ sơ, điều hướng đến trang chính của hồ sơ
+          window.location.href = '../donor/displayDonor';
+        } else {
+          // Nếu chưa có hồ sơ, điều hướng đến trang tạo hồ sơ
+          window.location.href = '../donor';
+        }
       })
       .catch((error) => {
         console.error('Error retrieving user profile:', error);
       });
   };
+  
 
   const handleRefreshToken = () => {
     const refreshToken = Cookies.get('refreshToken');
@@ -218,9 +224,16 @@ function Login() {
                 </Link>
               </Button>
 
-              <Button variant="info" onClick={handleRefreshToken}>
+              {/* <Button variant="info" onClick={handleRefreshToken}>
                 Refresh Token
+              </Button> */}
+
+              <Button variant="success">
+                <Link href="forgotPassword" style={{ textDecoration: 'none', color: 'white' }}>
+                  Forgot Password?
+                </Link>
               </Button>
+
             </ButtonGroup>
 
           </Form>

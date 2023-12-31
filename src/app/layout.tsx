@@ -3,9 +3,10 @@ import { Inter } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppHeader from '@/components/app.header';
 import AppFooter from '@/components/app.footer';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import AppSideBar from '@/components/app.sideBar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,11 +25,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppHeader />
-
-        <Container style={{ minHeight: 'calc(100vh - 106px)' }}>
-          {children}
+        <Container fluid>
+          <Row>
+            <Col sm={1}>
+              <AppSideBar />
+            </Col>
+            <Col>
+              <Container style={{ minHeight: 'calc(100vh - 106px)' }}>
+                {children}
+              </Container>
+            </Col>
+          </Row>
         </Container>
-        
+
         <AppFooter/>
         <ToastContainer
           position="bottom-center"
