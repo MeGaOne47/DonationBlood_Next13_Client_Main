@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AppSideBar from '@/components/app.sideBar';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ['latin'] })
 
 // export const metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({
           </Row>
         </Container>
         <Analytics />
+        <SpeedInsights />
         <AppFooter/>
         <ToastContainer
           position="bottom-center"
