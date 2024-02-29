@@ -28,10 +28,101 @@ function Login() {
     setShowPassword(!showPassword); // Đảo ngược giá trị hiện tại của showPassword
   };
 
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const MIN_PASSWORD_LENGTH = 8;
+
+  const validatePasswordLength = (password: string | any[]) => {
+    return password.length >= MIN_PASSWORD_LENGTH;
+  };
+
+  const validatePasswordComplexity = (password: string) => {
+    // Kiểm tra ít nhất một chữ cái viết hoa
+    const uppercaseRegex = /[A-Z]/;
+    // Kiểm tra ít nhất một chữ cái viết thường
+    const lowercaseRegex = /[a-z]/;
+    // Kiểm tra ít nhất một số
+    const numberRegex = /[0-9]/;
+    // Kiểm tra ít nhất một kí tự đặc biệt
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+  
+    return (
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      numberRegex.test(password) &&
+      specialCharRegex.test(password)
+    );
+  };
+  
+
   const handleLogin = () => {
-    if (!formData.email || !formData.password) {
+    // Kiểm tra xem mật khẩu đáp ứng yêu cầu về tính phức tạp không
+    if (!validatePasswordComplexity(formData.password)) {
+      // Hiển thị thông báo lỗi nếu mật khẩu không phức tạp đủ
+      toast.error('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+    // if (!formData.email || !formData.password) {
+    //   // Validation failed, display an error toast
+    //   toast.error('Please fill in all the fields', {
+    //     position: "bottom-center",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //   });
+    //   return;
+    // }
+    if (!formData.email) {
+      // Validation failed, display an error toast for missing email
+      toast.error('Please enter your email', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+    if (!formData.password) {
+      // Validation failed, display an error toast for missing password
+      toast.error('Please enter your password', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+    if (!validateEmail(formData.email)) {
       // Validation failed, display an error toast
-      toast.error('Please fill in all the fields', {
+      toast.error('Please enter a valid email address', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+    if (!validatePasswordLength(formData.password)) {
+      // Validation failed, display an error toast
+      toast.error(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long`, {
         position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: false,

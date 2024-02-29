@@ -43,6 +43,7 @@ function Register() {
     }
 
     // Send a POST request to the registration endpoint
+    // fetch('http://localhost:8000/src/api/v1/users/index.php', {
     fetch('http://localhost:8000/auth/register', {
       method: 'POST',
       headers: {
@@ -51,7 +52,7 @@ function Register() {
       body: JSON.stringify(formData),
     })
       .then((response) => {
-        if (response.status === 201) {
+        if (response.status === 200 || response.status === 201) {
           toast.success('Registration successful', { 
             position: 'top-right',
             autoClose: 3000,

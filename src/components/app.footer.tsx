@@ -1,6 +1,6 @@
 function AppFooter() {
   return (
-    <footer className="bg-dark text-white text-center py-2" >
+    <footer className="bg-dark text-white text-center py-2" style={{ position: 'fixed', left: 0, bottom: 0, width: '100%' }}>
       <div className="container">
         <p style={{ margin: '0 auto' }}>&copy; 2023 Your Company Nguyễn Tấn Hùng</p>
       </div>
