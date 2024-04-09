@@ -59,6 +59,8 @@ export default function UserButton() {
           // Xóa các cookies hoặc lưu trữ local storage khi logout thành công
           Cookies.remove('isLoggedIn');
           Cookies.remove('user');
+          Cookies.remove('accessToken'); // Xóa accessToken
+          Cookies.remove('refreshToken'); // Xóa refreshToken
           setIsLoggedIn(false);
           window.location.href = '/users/login';
           // window.location.reload(); // Có thể cần reload trang để cập nhật giao diện
@@ -183,7 +185,7 @@ export default function UserButton() {
     <> 
       {isClient ? (
         isLoggedIn ? (
-        <Dropdown>
+        <Dropdown id="dropdown-menu">
           <Dropdown.Toggle variant="light" id="dropdown-basic" style={userButtonStyle}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               {profileImage ? (
@@ -243,7 +245,7 @@ export default function UserButton() {
               </Link>
             </Dropdown.Item>
             <Dropdown.Item>
-              <Button onClick={handleLogout} variant="light" size="sm">
+              <Button id='logout-button' onClick={handleLogout} variant="light" size="sm">
                 <FontAwesomeIcon icon={faArrowRight} />
                 <span style={{ marginLeft: '5px' }}>Sign Out</span>
               </Button>

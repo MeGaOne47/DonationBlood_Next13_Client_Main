@@ -137,6 +137,16 @@ const DisplayDonor = () => {
       } catch (error) {
         console.error('Error uploading image:', error);
       }
+    } else {
+      // Thông báo lỗi khi không có ảnh được chọn
+      toast.error('Please select an image before uploading', {
+        position: 'bottom-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -155,7 +165,7 @@ const DisplayDonor = () => {
   return (
     <div>
       <Row>
-        <Col xs={4}>
+        <Col xs={12} md={4}>
           <h2>Donor Details</h2>
           <Card>
             <Card.Body>
@@ -173,7 +183,7 @@ const DisplayDonor = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={3}>
+        <Col xs={12} md={4}>
           <h2>Donation History</h2>
           <Card>
             <ListGroup variant="flush">
@@ -190,16 +200,16 @@ const DisplayDonor = () => {
             </ListGroup>
           </Card>
         </Col>
-        <Col xs={2}>
+        <Col xs={12} md={4}>
           <h2>Avatar</h2>
           <Card>
             <Card.Body>
             <div style={{ textAlign: 'center'}}>
-              <img
-                src={`http://localhost:8000/users/${userData?.id}/profile-image`}
-                alt={`Profile of ai`}
-                style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-              />
+            <img
+              src={userData?.id ? `http://localhost:8000/users/${userData?.id}/profile-image` : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'}
+              alt={`Profile of ${userData?.username}`}
+              style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+            />
               <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>Choose a new image</Form.Label>
                   <Form.Control type="file" onChange={handleFileChange} />

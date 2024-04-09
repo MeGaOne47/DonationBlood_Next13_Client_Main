@@ -1,4 +1,5 @@
 'use client'
+import ButtonLoading from "@/components/btnLoading.modal";
 import {useRouter} from "next/navigation";
 import {Button, Card} from "react-bootstrap";
 import useSWR, { Fetcher } from 'swr'
@@ -21,9 +22,7 @@ const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
     );
     if (isLoading) {
         return (
-            <div>
-                Loading...
-            </div>
+            <ButtonLoading/>
         )
     }
 

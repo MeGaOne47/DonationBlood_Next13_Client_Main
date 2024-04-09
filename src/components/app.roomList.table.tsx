@@ -23,6 +23,8 @@ function AppJoonRoomTable(props: IProps) {
   const [showModalUpdate, setShowModalUpdate] = useState<boolean>(false);
   const [showViewModal, setShowViewModal] = useState<boolean>(false);
   const [viewedRoom, setViewedRoom] = useState<IJoonRoom | null>(null);
+  const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState<boolean>(false);
+  const [roomToDeleteId, setRoomToDeleteId] = useState<number | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean>(false); // Thêm state isAdmin
 
   useEffect(() => {

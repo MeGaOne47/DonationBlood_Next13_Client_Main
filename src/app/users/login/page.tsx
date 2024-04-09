@@ -140,7 +140,7 @@ function Login() {
       body: JSON.stringify(formData),
     })
       .then((response) => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           return response.json();
         } else {
           console.error('Login failed');
@@ -305,7 +305,7 @@ function Login() {
             </Form.Group>
 
             <ButtonGroup style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px 0'}}>
-              <Button variant="primary" onClick={handleLogin}>
+              <Button variant="primary" onClick={handleLogin} className="login-button">
                 Login
               </Button>
 

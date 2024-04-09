@@ -43,7 +43,6 @@ function Register() {
     }
 
     // Send a POST request to the registration endpoint
-    // fetch('http://localhost:8000/src/api/v1/users/index.php', {
     fetch('http://localhost:8000/auth/register', {
       method: 'POST',
       headers: {
